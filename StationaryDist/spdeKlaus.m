@@ -23,7 +23,7 @@ localWN=zeros(J/S1+1,1);
 for i=0:J/S1
     fftmatend=fft(u_new(J+2:end).*exp(-1/wl^2*(x+L-i*S1*h).^2)); %% 1D Fourier transform of every column of component j
     spectrum=abs((fftmatend(2:round(J/(2*S1)))));
-    [~,localWN(i+1)]=max(spectrum(Start:End)); %% C contains maximum values per column, I contains rowindex where maximum is attained
+    [~,localWN(i+1)]=max(spectrum(Start:End)); %% C contains maximum values per column, I contains the row index where the maximum is attained
     localWN(i+1)=localWN(i+1)+Start-1;
 end
 PulseCount=zeros(1,MAX);
