@@ -1,8 +1,8 @@
 clear all, close all
 
 %This code computes solutions to the Klausmeijer model, Eq. (1.1) in
-%Hamster, van Heijster and Siero, and computes average exit times as function
-%of wavenumber k and rainfall a. 
+%Hamster, van Heijster and Siero, and computes the stationary distribution
+%of local wave numbers as a function of rainfall a. 
 %Explanation of the numerical scheme can
 %be found in Appendix A.2
 
@@ -25,7 +25,7 @@ Lin(J+2:end,J+2:end)=-m*speye(J+1,J+1);
 
 LinOp=Ab+Lin;                          %Full linear part of equation
 EE=speye(2*(J+1))-dt*LinOp;            %Matrix to solve Eq. (A.4)
-clear Ab Lin LinOp                     %Optional for when menory issues arise
+clear Ab Lin LinOp                     %Optional for when memory issues arise
 
 I=100;                                 %Number of iterations for computing averages
 
@@ -41,7 +41,7 @@ SE=[ 18,34; 18,35; 19,36; 20,36; 20,36; 21,37; 21,37; 21,37; 22,37; 22,38;
 MAX=max(SE,[],'all');
 
 
-%turn all indexes of a and SE values into a list to speed up the parrallel forloop.
+%turn all indexes of a and SE values into a list to speed up the parallel for loop.
 List=[];
 for i=1:length(Aa)
     for j=1:I
@@ -54,7 +54,7 @@ PulseCountList=zeros(LL,MAX);
 parfor k=1:LL
     k
     a=Aa(List(k,1));
-    %Start and End form the range in which the predominant local wavenumber
+    %Start and End are the range in which the predominant local wavenumber
     %is found
     Start=SE(List(k,1),1);
     End=SE(List(k,1),2);
@@ -67,7 +67,7 @@ parfor k=1:LL
 end
 
 
-%turn list back into matrix
+%turn list back into a matrix
 PulseCount=zeros(length(Aa),I,MAX);
 for i=1:LL
     PulseCount(List(i,1),List(i,2),:)=PulseCountList(i,:);
