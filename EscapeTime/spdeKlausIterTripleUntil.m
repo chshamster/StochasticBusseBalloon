@@ -9,7 +9,7 @@ flag=false;
 k=2;
 pn=n; %set pulse number to the number of the IC
 T=0;
-while pn==n && T<Tmax    %time loop. Keep running untill the pulse number changes. 
+while pn==n && T<Tmax    %time loop. Keep running until the pulse number changes. 
     if flag==false %generate two samples
         [dW11,dW21]=circ_cov_sampleB(d,Ntilde);
         dW1=[zeros(J+1,1);dW11(1:J+1)]; dW2=[zeros(J+1,1);dW21(1:J+1)];
