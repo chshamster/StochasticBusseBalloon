@@ -1,4 +1,6 @@
 load data.mat
+
+%plot Busse balloon in wave number
 figure(1)
 hold on
 plot(a1,2*pi./WN1,'b')
@@ -9,6 +11,7 @@ plot(a5,2*pi./WN5,'b')
 plot(a6,2*pi./WN6,'b')
 hold off
 
+%plot Busse balloon in pulse number
 figure(2)
 hold on
 plot(a1,500./WN1,'b')
