@@ -1,7 +1,7 @@
 clear all, close all
 
 %This code computes solutions to the Klausmeijer model, Eq. (1.1) in
-%Hamster, van Heijster and Siero, and computes average exit times as function
+%Hamster, van Heijster and Siero, and computes average exit times as a function
 %of wavenumber k and rainfall a. 
 %Explanation of the numerical scheme can
 %be found in Appendix A.2
@@ -25,7 +25,7 @@ Lin(J+2:end,J+2:end)=-m*speye(J+1,J+1);
 
 LinOp=Ab+Lin;                          %Full linear part of equation
 EE=speye(2*(J+1))-dt*LinOp;            %Matrix to solve Eq. (A.4)
-clear Ab Lin LinOp                     %Optional for when menory issues arise
+clear Ab Lin LinOp                     %Optional for when memory issues arise
 
 S2=200;                                %Every S2 timesteps, we compute the pulse number
 
@@ -41,7 +41,7 @@ MAX=max(SE,[],'all');
 
 dim=max(SE(:,2))-min(SE(:,1))+1; %number of different wavenumbers used per a value
 
-%turn all indexes of a and SE values into a list to speed up the parrallel forloop.
+%turn all indexes of a and SE values into a list to speed up the parallel for loop.
 List=[];
 for j=1:length(Aa)
     for n=SE(j,1):SE(j,2)
@@ -67,7 +67,7 @@ parfor k=1:LL
     TexitList(k)=spdeKlausIterTripleUntil(profile(:),dt,J,a,sigma,q,dEE,S2,n,Tmax);  %compute first exit time
 end
 
-%Turn list back into matrix
+%Turn list back into a matrix
 Texit=zeros(length(Aa),dim,K);
 for k=1:LL
     Texit(List(k,1),List(k,2),List(k,3))=TexitList(k);
