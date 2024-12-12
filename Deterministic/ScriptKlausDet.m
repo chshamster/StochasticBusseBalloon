@@ -1,10 +1,10 @@
 clear all, close all
 
-%this code computes solutions to the Klausmeijer model, Eq. (1.1) in
-%Hamster, van Heijster and Siero. Explanation of the numerical scheme can
+%This code computes solutions to the Klausmeijer model, Eq. (1.1) in
+%Hamster, van Heijster and Siero, for sigma=0. An explanation of the numerical scheme can
 %be found in Appendix A.2
 
-%the folder Periodic Solutions contains a large set of stationary periodic
+%The folder Periodic Solutions contains a large set of stationary periodic
 %solutions. 
 
 run ../PeriodicSolutions/parameters.m   %Set parameters corresponding to the periodic solutions
@@ -19,7 +19,7 @@ IC=profile(:);               %The initial condition is the profile reshaped as v
 N=2*10^4; T=50; dt=T/N; t=(0:dt:T)';
 
 %Spatial discretization
-Ab=computeAbP(J,h,d,1);             %Discretisation of second derivative (in two blocks) with periodc BC
+Ab=computeAbP(J,h,d,1);             %Discretisation of the second derivative (in two blocks) with periodic BC
 Lin=sparse(zeros(2*(J+1),2*(J+1))); %linear part of Klausmeijer model
 Lin(1:J+1,1:J+1)=-speye(J+1,J+1);   
 Lin(J+2:end,J+2:end)=-m*speye(J+1,J+1);
