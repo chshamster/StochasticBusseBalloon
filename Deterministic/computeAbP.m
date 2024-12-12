@@ -1,5 +1,5 @@
 function [Ab] = computeAbP(J,h,dF,dR)
-%discretization of second derivative in two blocks with periodic boundary
+%discretization of the second derivative in two blocks with periodic boundary
 %conditions
 e = ones(J+1,1); A = spdiags([-e 2*e -e], -1:1, J+1, J+1);
 A(1,end)=-1; A(end,1)=-1;
